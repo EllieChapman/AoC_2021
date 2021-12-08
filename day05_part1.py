@@ -43,16 +43,13 @@ def diag(coord):
 
 
 for coord in a:
-    if len(coord) != 4:
-        print("jhh")
     if coord[0] == coord[2]:
         xsame(coord)
     elif coord[1] == coord[3]:
         ysame(coord)
     else:
         diag(coord)
-        # pass
-        # ignore in part 1
+
 
 danger = 0
 for key in found:
