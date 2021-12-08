@@ -8,36 +8,22 @@ for i in range(0, len(a)):
 
 found = {}
 def update_dict(s):
-    if s in found:
-        found[s] += 1
-    else:
-        found[s] = 1
+    found[s] = found.get(s, 0) + 1
 
 def xsame(coord):
-    if coord[1] < coord[3]:
-        for y in range(coord[1], coord[3]+1):
-            update_dict((coord[0], y))
-    elif coord[1] > coord[3]:
-        for y in range(coord[3], coord[1]+1):
-            update_dict((coord[0], y))
-    else:
-        print("uh oh")
+    min_y = min(coord[1], coord[3])
+    max_y = max(coord[1], coord[3])
+    for y in range(min_y, max_y+1):
+        update_dict((coord[0], y))
 
 def ysame(coord):
-    if coord[0] < coord[2]:
-        for x in range(coord[0], coord[2]+1):
-            update_dict((x, coord[1]))
-    elif coord[0] > coord[2]:
-        for x in range(coord[2], coord[0]+1):
-            update_dict((x, coord[1]))
-    else:
-        print("uh oh")
+    min_x = min(coord[0], coord[2])
+    max_x = max(coord[0], coord[2])
+    for x in range(min_x, max_x+1):
+        update_dict((x, coord[1]))
 
 def diag(coord):
-    x1 = coord[0]
-    x2 = coord[2]
-    y1 = coord[1]
-    y2 = coord[3]
+    x1, y1, x2, y2 = coord
     if x1 < x2:
         if y1 < y2:
             for i in range(x1, x2+1):
