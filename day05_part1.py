@@ -22,24 +22,21 @@ def ysame(coord):
     for x in range(min_x, max_x+1):
         update_dict((x, coord[1]))
 
+def sign(a, b):
+    if a < b:
+        return 1
+    else:
+        return -1
+
 def diag(coord):
     x1, y1, x2, y2 = coord
     l = max(x1, x2) - min(x1, x2) + 1
 
-    if x1 < x2:
-        if y1 < y2:
-            for i in range(0, l):
-                update_dict((x1+i, y1+i))
-        else:
-            for i in range(0, l):
-                update_dict((x1+i, y1-i))
-    else:
-        if y1 < y2:
-            for i in range(0, l):
-                update_dict((x1-i, y1+i))
-        else:
-            for i in range(0, l):
-                update_dict((x1-i, y1-i))
+    x_sign = sign(x1, x2)
+    y_sign = sign(y1, y2)
+
+    for i in range(0, l):
+        update_dict((x1+(i*x_sign), y1+(i*y_sign)))
 
 
 for coord in a:
